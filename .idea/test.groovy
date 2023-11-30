@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@Library(['piper-lib', 'piper-lib-os']) _
+//@Library(['piper-lib', 'piper-lib-os']) _
 
 pipeline {
     stages {
@@ -33,6 +33,6 @@ pipeline {
             }
 
         }
-        
+
     }
 }
