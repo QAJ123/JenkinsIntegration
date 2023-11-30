@@ -6,19 +6,19 @@ node {
     def buildInfo
 
     stage('Clone sources') {
-        git url: 'https://github.com/jfrogdev/project-examples.git'
+        git url: 'https://github.com/QAJ123/JenkinsIntegration.git'
     }
 
     stage('Artifactory configuration') {
         // Tool name from Jenkins configuration
-        rtMaven.tool = "Maven-3.3.9"
+        rtMaven.tool = "Maven-3.9.5"
         // Set Artifactory repositories for dependencies resolution and artifacts deployment.
         rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
         rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
     }
 
     stage('Maven build') {
-        buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
+        buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean test'
     }
 
     stage('Publish build info') {
